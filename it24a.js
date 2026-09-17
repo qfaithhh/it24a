@@ -1,0 +1,155 @@
+//call createEditButton() function
+     const EditBtn = createEditButton(li,taskSpan);
+      li.appendChild(editBtn);
+
+      //call createDeleteButton() function
+     const DeleteBtn = createDeleteButton(li);
+      li.appendChild(DeleteBtn);
+
+
+
+      72
+
+
+       function createEditButton(li,taskSpan){
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.style.marginLeft = "8px";
+        editBtn.onclick = () => handleEditClick(li);
+          return editBtn;
+    }
+        
+    function handleEditClick(li){
+        const currentText = li.firstChild.textContent.trim(); 
+        const newText = prompt("Edit yourtask", currentText);
+
+        if (newText !==null && newText.trim() !==""){
+            li.firstChild.textContent = newText.trim();
+            alert("Updated task");
+        }else{
+                alert("No changes made");
+            }
+            
+        }
+        91
+
+    78
+
+    93
+     function createDeleteButton(li){
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.style.marginLeft = "8px";
+        deleteBtn.onclick = () => handleDeleteClick(li);
+          return deleteBtn;  
+
+      }
+
+      function handleDeleteClick(li){
+        li.remove();
+        alert("Task deleted");
+      }
+      105
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type = "text"
+            id = "taskInput"
+            placeholder =" Add a task"
+    />
+    <button onclick="addTask()">Add Task</button>
+    <ul id = "taskList"> Your tasks go here</ul>
+    <script>
+    function getTaskText(){
+        const input = document.getElementById('taskInput');
+        const text = input.value.trim();
+        console.log("The input value is: " + input.value);
+
+        
+        return text;
+    }
+    function addTask(){
+        const taskText = getTaskText();
+        addTaskItem(taskText);
+    }
+    function addTaskItem(taskText){
+        const li = document.createElement('li');
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
+        li.appendChild(taskSpan);
+
+        document.getElementById('taskList').appendChild(li);
+
+        const doneBtn = createDoneButton(li);
+        li.appendChild(doneBtn);
+         const editBtn = createEditBtn(li, taskSpan);
+        li.appendChild(editBtn);
+         const deleteBtn = createDeleteBtn(li, taskSpan);
+        li.appendChild(deleteBtn);
+
+
+
+    }
+    function createDoneButton(li){
+        const doneBtn = document.createElement("button");
+        doneBtn.textContent = "Done";
+        
+        doneBtn.onclick = () => {
+         console.log(li);
+         li.classList.add('done');
+         const buttons = li.querySelectorAll("button");
+
+         buttons.forEach(btn => {
+            btn.disabled=true;
+         });
+         console.log("Task Completed", li.textContent, Date());
+        }
+        return doneBtn;
+    }
+    function createEditBtn(li,taskSpan){
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.style.marginLeft = "8px"; 
+        editBtn.onclick = () => handleEdit(li);
+        return editBtn;   
+        }
+        function handleEdit(li){
+        const currentText = li.firstChild.textContent.trim();
+        const newText = prompt("Edit task", currentText);
+        if (newText !== null && newText.trim() !== "") {
+            li.firstChild.textContent = newText.trim();
+            alert("Updated Task");
+        }else{
+            alert("No changes made"); 
+        }
+    }
+     function createDeleteBtn(li,taskSpan){
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.style.marginLeft = "8px"; 
+        deleteBtn.onclick = () => handleDeleteClick(li);
+        return deleteBtn;   
+        }
+        function handleDeleteClick(li){
+            li.remove();
+            alert("task deleted");
+            }
+
+
+
+    
+    </script>
+</body>
+</html>
+
+
+    
