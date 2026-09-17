@@ -1,3 +1,58 @@
+//call createEditButton() function
+     const EditBtn = createEditButton(li,taskSpan);
+      li.appendChild(editBtn);
+
+      //call createDeleteButton() function
+     const DeleteBtn = createDeleteButton(li);
+      li.appendChild(DeleteBtn);
+
+
+
+      72
+
+
+       function createEditButton(li,taskSpan){
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.style.marginLeft = "8px";
+        editBtn.onclick = () => handleEditClick(li);
+          return editBtn;
+    }
+        
+    function handleEditClick(li){
+        const currentText = li.firstChild.textContent.trim(); 
+        const newText = prompt("Edit yourtask", currentText);
+
+        if (newText !==null && newText.trim() !==""){
+            li.firstChild.textContent = newText.trim();
+            alert("Updated task");
+        }else{
+                alert("No changes made");
+            }
+            
+        }
+        91
+
+    78
+
+    93
+     function createDeleteButton(li){
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.style.marginLeft = "8px";
+        deleteBtn.onclick = () => handleDeleteClick(li);
+          return deleteBtn;  
+
+      }
+
+      function handleDeleteClick(li){
+        li.remove();
+        alert("Task deleted");
+      }
+      105
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,8 +93,9 @@
         li.appendChild(doneBtn);
          const editBtn = createEditBtn(li, taskSpan);
         li.appendChild(editBtn);
-          const deleteBtn = createDeleteBtn(li, taskSpan);
+         const deleteBtn = createDeleteBtn(li, taskSpan);
         li.appendChild(deleteBtn);
+
 
 
     }
@@ -58,7 +114,6 @@
          console.log("Task Completed", li.textContent, Date());
         }
         return doneBtn;
-   
     }
     function createEditBtn(li,taskSpan){
         const editBtn = document.createElement("button");
@@ -77,7 +132,7 @@
             alert("No changes made"); 
         }
     }
- function createDeleteBtn(li,taskSpan){
+     function createDeleteBtn(li,taskSpan){
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.style.marginLeft = "8px"; 
@@ -90,6 +145,11 @@
             }
 
 
+
+    
     </script>
 </body>
 </html>
+
+
+    
